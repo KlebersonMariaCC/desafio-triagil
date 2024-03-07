@@ -23,4 +23,6 @@ public class ErroTime {
         return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroTime.TIME_JA_CADASTRADO)),HttpStatus.CONFLICT);
     }
 
+    
+
 }

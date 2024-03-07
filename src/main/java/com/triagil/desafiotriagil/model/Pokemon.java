@@ -11,19 +11,19 @@ public class Pokemon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    String nome;
+    String name;
 
-    Long altura;
+    Long height;
     
-    Long peso;
+    Long weight;
 
     
 
-    public Pokemon( String nome, Long altura, Long peso) {
+    public Pokemon( String name, Long height, Long weight) {
         
-        this.nome = nome;
-        this.altura = altura;
-        this.peso = peso;
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
     }
 
     public Long getId() {
@@ -34,28 +34,28 @@ public class Pokemon {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getname() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setname(String name) {
+        this.name = name;
     }
 
-    public Long getAltura() {
-        return altura;
+    public Long getheight() {
+        return height;
     }
 
-    public void setAltura(Long altura) {
-        this.altura = altura;
+    public void setheight(Long height) {
+        this.height = height;
     }
 
-    public Long getPeso() {
-        return peso;
+    public Long getweight() {
+        return weight;
     }
 
-    public void setPeso(Long peso) {
-        this.peso = peso;
+    public void setweight(Long weight) {
+        this.weight = weight;
     }
 
     @Override
@@ -63,9 +63,9 @@ public class Pokemon {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        result = prime * result + ((altura == null) ? 0 : altura.hashCode());
-        result = prime * result + ((peso == null) ? 0 : peso.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((height == null) ? 0 : height.hashCode());
+        result = prime * result + ((weight == null) ? 0 : weight.hashCode());
         return result;
     }
 
@@ -83,27 +83,27 @@ public class Pokemon {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (nome == null) {
-            if (other.nome != null)
+        if (name == null) {
+            if (other.name != null)
                 return false;
-        } else if (!nome.equals(other.nome))
+        } else if (!name.equals(other.name))
             return false;
-        if (altura == null) {
-            if (other.altura != null)
+        if (height == null) {
+            if (other.height != null)
                 return false;
-        } else if (!altura.equals(other.altura))
+        } else if (!height.equals(other.height))
             return false;
-        if (peso == null) {
-            if (other.peso != null)
+        if (weight == null) {
+            if (other.weight != null)
                 return false;
-        } else if (!peso.equals(other.peso))
+        } else if (!weight.equals(other.weight))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Pokemon [id=" + id + ", nome=" + nome + ", altura=" + altura + ", peso=" + peso + "]";
+        return "Pokemon [id=" + id + ", name=" + name + ", height=" + height + ", weight=" + weight + "]";
     }
 
     

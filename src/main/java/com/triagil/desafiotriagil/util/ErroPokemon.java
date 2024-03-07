@@ -9,7 +9,7 @@ public class ErroPokemon {
 
 
 
-    public ResponseEntity<CustomErrorType> erroPOkemonNaoEncontrado() {
+    public static ResponseEntity<CustomErrorType> erroPokemonNaoEncontrado() {
 
         return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(POKEMON_NAO_ENCONTRADO)), HttpStatus.NOT_FOUND);
     }

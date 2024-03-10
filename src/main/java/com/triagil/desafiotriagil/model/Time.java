@@ -2,6 +2,8 @@ package com.triagil.desafiotriagil.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +14,8 @@ import jakarta.persistence.OneToMany;
 public class Time {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     Long id;
     
     String owner;
@@ -90,7 +93,7 @@ public class Time {
     public String toString() {
         return "Time [id=" + id + ", owner=" + owner + ", pokemons=" + pokemons + "]";
     }
+    
 
-    
-    
+    public Time(){}
 }

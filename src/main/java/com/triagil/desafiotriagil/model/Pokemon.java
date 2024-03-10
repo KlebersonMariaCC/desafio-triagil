@@ -1,14 +1,23 @@
 package com.triagil.desafiotriagil.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pokemon {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
+    Long tableId;
+
     Long id;
 
     String name;
@@ -19,8 +28,8 @@ public class Pokemon {
 
     
 
-    public Pokemon( String name, Long height, Long weight) {
-        
+    public Pokemon( Long id, String name, Long height, Long weight) {
+        this.id = id;
         this.name = name;
         this.height = height;
         this.weight = weight;
@@ -34,27 +43,27 @@ public class Pokemon {
         this.id = id;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    public void setname(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Long getheight() {
+    public Long getHeight() {
         return height;
     }
 
-    public void setheight(Long height) {
+    public void setHeight(Long height) {
         this.height = height;
     }
 
-    public Long getweight() {
+    public Long getWeight() {
         return weight;
     }
 
-    public void setweight(Long weight) {
+    public void setWeight(Long weight) {
         this.weight = weight;
     }
 
@@ -106,7 +115,7 @@ public class Pokemon {
         return "Pokemon [id=" + id + ", name=" + name + ", height=" + height + ", weight=" + weight + "]";
     }
 
-    
+    public Pokemon (){}
 
     
 

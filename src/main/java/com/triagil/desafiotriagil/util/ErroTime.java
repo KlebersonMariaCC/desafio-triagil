@@ -6,14 +6,14 @@ import org.springframework.http.ResponseEntity;
 public class ErroTime {
 
 
-    static final String TIMES_NAO_CADASTRADOS = "Não há time cadastrados";
+    static final String TIMES_NAO_CADASTRADOS = "Não há times cadastrados";
     
     static final String TIME_JA_CADASTRADO = "Time já cadastrado";
 
 
 
     public static ResponseEntity<CustomErrorType> erroTimesNaoCadastrados() {
-        return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroTime.TIMES_NAO_CADASTRADOS)),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<CustomErrorType>(new CustomErrorType(ErroTime.TIMES_NAO_CADASTRADOS),HttpStatus.NOT_FOUND);
 
     }
 

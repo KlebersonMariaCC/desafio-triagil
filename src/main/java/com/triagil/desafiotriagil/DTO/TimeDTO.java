@@ -2,37 +2,35 @@ package com.triagil.desafiotriagil.DTO;
 
 import java.util.List;
 
-import com.triagil.desafiotriagil.model.Pokemon;
-
 
 
 public class TimeDTO {
 
-     String owner;
+     String user;
 
-    List<String> pokemons;
+    List<String> team;
 
     
 
-    public TimeDTO(String owner, List<String> pokemons) {
-        this.owner = owner;
-        this.pokemons = pokemons;
+    public TimeDTO(String user, List<String> team) {
+        this.user = user;
+        this.team = team;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getUser() {
+        return user;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public List<String> getPokemons() {
-        return pokemons;
+    public List<String> getTeam() {
+        return team;
     }
 
-    public void setPokemons(List<String> pokemons) {
-        this.pokemons = pokemons;
+    public void setTeam(List<String> team) {
+        this.team = team;
     }
 
     

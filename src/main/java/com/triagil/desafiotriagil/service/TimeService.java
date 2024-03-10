@@ -14,4 +14,6 @@ public interface TimeService {
 
     public Time CriaTime(String owner, List<Pokemon> pokemons);
 
+    public List<Time> listarTimesPorUsuario(String owner);
+
 }

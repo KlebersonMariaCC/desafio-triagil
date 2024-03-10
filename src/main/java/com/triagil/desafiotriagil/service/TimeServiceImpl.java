@@ -31,5 +31,12 @@ public class TimeServiceImpl implements TimeService{
         return time;
     }
 
+    @Override
+    public List<Time> listarTimesPorUsuario(String owner) {
+        
+        return timeRepository.findByOwner(owner);
+        
+    }
+
 
 }

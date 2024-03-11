@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  desafiotriagil:
+    image: desafiotriagil
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - db
+    links:
+      - db
+    
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - database:/var/lib/postgresql/db
+      #Problema de memória em produção
+      - type: tmpfs
+        target: /dev/shm
+    
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - 5050:5050
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@postgres.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin4
+    depends_on:
+      - db
+
+volumes:
+  pgadmin_data:
+  database:
+  
+  

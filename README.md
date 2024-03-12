@@ -1,3 +1,64 @@
+# Descrição, pré requisitos e afins
+
+O projeto é uma api rest, feita com spring-boot para guardar times de pokemons (veja a especificação do problema abaixo)
+
+## Requisitos
+
+Para rodar api localmente, java 17+, maven 3.9+ e postgresql (pgAdmin4 opicional)
+
+Para rodar usando containers,  java 17+ ,docker docker-compose (a imagem do postgres e pgAdmin é baixada automaticamente)
+
+## Execução
+
+### Para rodar localmente:
+
+ Na raiz do projeto faça os seguintes comandos:
+ 
+```
+mvn package -DskipTests
+```
+```
+java -jar ./target/desafio-triagil-0.0.1-SNAPSHOT.jar
+
+```
+Além disso é necessário alterar o application.properties para apontar para o banco postgres local da máquina.
+
+### Para rodar usando containers:
+
+```
+docker-compose up
+
+```
+
+O docker automaticamente faz o empacotamento, baixa um banco postgres e o pgAdmin, tudo junto.
+ 
+Para rodar o pgAdmin vá para:
+
+https://localhost:5050/
+
+E use as credenciais colocadas no docker-compose.yml (email padrão: admin@mail.com e senha padrão: admin)
+
+crie um servidor com o nome que preferir, mas com os atributos:
+
+  * connection: postgresql
+  * porta: 5432
+  * database, usuário e senha : o mesmo do .env
+
+
+Assim ele deve reconhecer o postgresql do container e dai vc consegue visualizar por lá
+
+Você também pode criar apenas a imagem da api. Na raiz do projeto (onde está o Dockerfile):
+
+
+```
+docker build -t desafio-triagil
+
+```
+Ou outro nome que preferir. Para executar a imagem (na primeira vez):
+```
+docker run -p 8080:8080 --name desafio-triagil
+
+```
 # Especificação do problema
 
 ## Desafio Triágil

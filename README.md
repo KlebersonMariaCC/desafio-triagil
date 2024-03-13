@@ -1,4 +1,4 @@
-# Descrição, pré requisitos e afins
+# Descrição, pré requisitos e afins (e um mini tutorial de docker)
 
 O projeto é uma api rest, feita com spring-boot para guardar times de pokemons (veja a especificação do problema no final).
 
@@ -8,10 +8,6 @@ Para rodar api localmente, java 17+, maven 3.9+ e postgresql (pgAdmin4 opicional
 
 Para rodar usando containers,  java 17+ ,docker docker-compose (a imagem do postgres e pgAdmin é baixada automaticamente)
 
-## Configuração
-
-Na  pasta ./src/main/ressouces  é onde fica guardado o arquivo de configuração do springboot. Lá temos dois modelos: um para rodar localmente (e com um container da aplicação, com os comandos mais abaixo) e outro cpara rodar usando docker-compose. O arquivo que o spring boot ira ler ao iniciar/ser compilado é o application.properties. Dentro dele possui um atributo spring.config.import onde vc poderá importar qualquer uma das configurações dependendo de como irá rodar o sistema.
-
 ## Execução
 
 ### Para rodar localmente:
@@ -20,6 +16,7 @@ Na  pasta ./src/main/ressouces  é onde fica guardado o arquivo de configuraçã
  
 ```
 mvn package -DskipTests
+
 ```
 ```
 java -jar ./target/desafio-triagil-0.0.1-SNAPSHOT.jar
@@ -78,6 +75,55 @@ docker start -ai desfio-triagil-api
 
 ```
  -ai é para visualizarmos no terminal e não em segundo plano.
+
+## Configuração
+
+Na  pasta ./src/main/ressouces  é onde fica guardado o arquivo de configuração do springboot. Lá temos dois modelos: um para rodar localmente (e com um container da aplicação, com os comandos mais abaixo) e outro cpara rodar usando docker-compose. O arquivo que o spring boot ira ler ao iniciar/ser compilado é o application.properties. Dentro dele possui um atributo spring.config.import onde vc poderá importar qualquer uma das configurações dependendo de como irá rodar o sistema. Lembrando que como a aplicação é rodada atravś de um jar ,toda alteração no application.properties implica em fazer um rebuild caso use containers. Voce pode fazer isso com 
+
+```
+docker-compose down
+
+```
+
+que desativará e excluirá os containers usados pelo docker-compose, e dai podemos fazer de duas formas:
+
+```
+docker image remove desafiotriagil
+
+```
+removendo a imagem da api e então: 
+
+```
+docker builder prune
+
+```
+que vai apagar o cache do construtor de imagens, fazendo assim que a  próxima imagem gerada  seja feita com o código atualizado.
+
+
+Caso queira uma opção mais agressiva ,temos
+
+```
+docker image prune
+
+```
+removendo as imagens não usadas.  dai seguimos com
+
+```
+docker builder prune
+
+```
+que vai apagar o cache do construtor de imagens, fazendo assim que a imagem seja feita com o código atualizado.
+
+
+Se quiser apagar todos os dados do docker:
+
+```
+docker system prune
+
+```
+Isso apga todos os containers, redes, imagens e cache não usados por ao menos um container ativo, podendo afetar outros projetos feitos em docker na sua máquina, use com cuidado!!!
+
+
 
 # Especificação do problema
 
@@ -207,5 +253,19 @@ Você será avaliado com base na qualidade do código, na implementação dos re
     "lapras",
     "dragonite"
   ]
+
+
 }
 ```
+
+# Coisas  ainda a serem colocadas neste readme
+
+ * Documentação swagger
+ * O que foi usado no start.spring.io para incializar o  projeto
+ * Outras coisas que posso ter errado/esquecido.
+
+# Dúvidas 
+
+kleberson.maria@ccc.ufcg.edu.br
+
+

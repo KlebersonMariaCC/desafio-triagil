@@ -1,12 +1,16 @@
 # Descrição, pré requisitos e afins
 
-O projeto é uma api rest, feita com spring-boot para guardar times de pokemons (veja a especificação do problema abaixo)
+O projeto é uma api rest, feita com spring-boot para guardar times de pokemons (veja a especificação do problema no final).
 
 ## Requisitos
 
 Para rodar api localmente, java 17+, maven 3.9+ e postgresql (pgAdmin4 opicional)
 
 Para rodar usando containers,  java 17+ ,docker docker-compose (a imagem do postgres e pgAdmin é baixada automaticamente)
+
+## Configuração
+
+Na  pasta ./src/main/ressouces  é onde fica guardado o arquivo de configuração do springboot. Lá temos dois modelos: um para rodar localmente (e com um container da aplicação, com os comandos mais abaixo) e outro cpara rodar usando docker-compose. O arquivo que o spring boot ira ler ao iniciar/ser compilado é o application.properties. Dentro dele possui um atributo spring.config.import onde vc poderá importar qualquer uma das configurações dependendo de como irá rodar o sistema.
 
 ## Execução
 
@@ -23,7 +27,11 @@ java -jar ./target/desafio-triagil-0.0.1-SNAPSHOT.jar
 ```
 Além disso é necessário alterar o application.properties para apontar para o banco postgres local da máquina.
 
+Você também pode apenas rodar o codigo a partir do main da classe DesafioTriagilApplication.java na sua IDE preferida.
+
 ### Para rodar usando containers:
+
+ Na raiz do projeto use o comando:
 
 ```
 docker-compose up
@@ -42,23 +50,35 @@ crie um servidor com o nome que preferir, mas com os atributos:
 
   * connection: postgresql
   * porta: 5432
-  * database, usuário e senha : o mesmo do .env
+  * database, usuário e senha : o mesmo do .env na raiz do projeto.
 
 
-Assim ele deve reconhecer o postgresql do container e dai vc consegue visualizar por lá
+Assim ele deve reconhecer o postgresql do container e dai vc consegue visualizar por lá.
+
+### Apenas o container da aplicação
 
 Você também pode criar apenas a imagem da api. Na raiz do projeto (onde está o Dockerfile):
 
 
 ```
-docker build -t desafio-triagil
+docker build -t desafiotriagil .
 
 ```
-Ou outro nome que preferir. Para executar a imagem (na primeira vez):
+Ou outro nome que preferir depois do -t. Para executar a imagem (na primeira vez):
 ```
-docker run -p 8080:8080 --name desafio-triagil
+docker run --name desfio-triagil-api --network=host desafiotriagil:latest -p 8080:8080
 
 ```
+O --network é para o localhost do container apontar para o da máquina local, assim a api consegue interagir com o postgres instalado localmente na maquina (sem ser outro container) sem maiores confugrações.  o -p faz o mapeamento da porta  local do container com a da rede local da máquina (de fato não seria necessário com o --network junto ,mas caso queira usar um container separado do postgres sem usar o atributo é necessário para a api ficar visivel na porta 8080 da máquina). a flag --name será o nome do caontainer e fica a seu critério.
+
+Quando vc desligar o sistema, o container continuará lá, mas apenas desativado. Se usarmos comando run de novo será feito outro container. Para usar o mesmo fazemos:
+
+```
+docker start -ai desfio-triagil-api
+
+```
+ -ai é para visualizarmos no terminal e não em segundo plano.
+
 # Especificação do problema
 
 ## Desafio Triágil
